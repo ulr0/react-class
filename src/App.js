@@ -37,8 +37,28 @@ function App() {
         <p>1월 5일 발행</p>
         <hr/>
       </div>
+{/* 
+      <div className="modal">
+        <h2>제목</h2>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div> */}
+
+      <Modal />
+      
     </div>
   );
+}
+
+// Component 만드는 법, 위치는 function App 이랑 나란히
+function Modal(){
+  return(
+    <div className="modal">
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  )
 }
 
 export default App;
