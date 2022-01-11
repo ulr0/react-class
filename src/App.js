@@ -11,9 +11,9 @@ function App() {
   let [like, setLike] = useState(0);
 
   function changeTitle(){
-    var newArray = [...title];
-    newArray[0] = '여자 코트 추천';
-    setTitle( newArray );
+    var newArray = [...title]; // 기존 state deep copy
+    newArray[0] = '여자 코트 추천'; // copy한 데이터에 수정사항 반영
+    setTitle( newArray ); // 변경함수()에 집어넣기
   }
 
   return (
