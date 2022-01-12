@@ -14,6 +14,9 @@ function App() {
   let [modal, setModal] = useState(false); // modal 상태 저장하는 state
 
   let [titleNumber, setTitleNumber] = useState(0);
+  
+  // 사용자가 input에 입력한 값 저장하는 state
+  let [input, setInput] = useState('');
 
   // map() 함수
   var array = [2,3,4];
@@ -39,7 +42,7 @@ function App() {
       {
         title.map(function(a, index){
           return (
-          <div className="list">
+          <div className="list" key={index}>
             <h4 onClick={ ()=>{ 
               setTitleNumber(index);
             setModal(!modal);
@@ -54,6 +57,21 @@ function App() {
           )
         })
       }
+
+      {/* 글 발행 기능 만들기
+          사용자가 입력한 input 값을 state에 저장해놓고
+          저장 버튼 누르면 글제목 state값에 추가되게 */}
+      <div className="publish">
+        <input onChange={ (e)=> { setInput(e.target.value) } } />
+        <button onClick={ ()=>{
+          var newTitle = [...title];
+          newTitle.unshift(input);
+          setTitle(newTitle);
+        }}>저장</button>
+      </div>
+
+      {/* 사용자가 입력한 값으로 input state 변경하는 이벤트
+      <input onChange={ (e)=>{ setInput(e.target.value) } } /> */}
 
       {/* <button onClick={ ()=>{ setTitleNumber(0) } }>button1</button>
       <button onClick={ ()=>{ setTitleNumber(1) } }>button2</button>
