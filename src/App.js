@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -103,6 +103,29 @@ function Modal(props){
       <p>상세내용</p>
     </div>
   )
+}
+
+// 예전 React 문법 - Component 만들기
+class Profile extends  React.Component {
+  constructor(){
+    super();
+    this.state = { name : 'Kim', age : 30 }
+  }
+
+  changeName = () => {
+    this.setState( {name : 'Lee'} )
+  }
+
+  render(){
+    return (
+      <div>
+        <h3>프로필</h3>
+        <p>저는 { this.state.name }입니다.</p>
+        <button onClick={ ()=>{ this.setState( {name : 'Park'} ) } }>버튼</button>
+        <button onClick={ this.changeName }>버튼2</button>
+      </div>
+    )
+  }
 }
 
 export default App;
