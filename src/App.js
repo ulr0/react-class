@@ -13,6 +13,8 @@ function App() {
   
   let [modal, setModal] = useState(false); // modal 상태 저장하는 state
 
+  let [titleNumber, setTitleNumber] = useState(0);
+
   // map() 함수
   var array = [2,3,4];
   var newArray = array.map(function(a){
@@ -38,7 +40,10 @@ function App() {
         title.map(function(a, index){
           return (
           <div className="list">
-            <h4> { a } <span onClick={ ()=>{ 
+            <h4 onClick={ ()=>{ 
+              setTitleNumber(index);
+            setModal(!modal);
+          } }> { a } <span onClick={ ()=>{ 
               var newLike = [...like];
               newLike[index] += 1;
               setLike( newLike );
@@ -50,18 +55,32 @@ function App() {
         })
       }
 
+      {/* <button onClick={ ()=>{ setTitleNumber(0) } }>button1</button>
+      <button onClick={ ()=>{ setTitleNumber(1) } }>button2</button>
+      <button onClick={ ()=>{ setTitleNumber(2) } }>button3</button> */}
+
+      {/* <button onClick={ ()=> { setModal(!modal) } }>열고닫기</button> */}
+      
+      {
+        modal === true
+        /* state 전송 1. 자식 component 작명={ state명 } */
+        ? <Modal title={ title } titleNumber={ titleNumber } ></Modal>
+        : null
+      }
+
       {/* 함수로 만든 반복문 사용*/}
-      { 반복된UI() }
+      {/* { 반복된UI() } */}
 
     </div>
   );
 }
 
 // Component 만드는 법, 위치는 function App 이랑 나란히
-function Modal(){
+/* state 전송 2. 자식 component에서 props 파라미터 입력 후 사용 */
+function Modal(props){
   return(
     <div className="modal">
-      <h2>제목</h2>
+      <h2> { props.title[props.titleNumber] } </h2>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
